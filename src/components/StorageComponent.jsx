@@ -7,23 +7,42 @@ import {saveToken, loadToken, deleteToken} from '../storage/secureAuth';
 
 export default function StorageComponent() {
 
+    // create the state default it to light ...
 const [theme, setTheme] = useState('light');
+
+// create the token , default it to null
  const [token, setToken] = useState(null);
 
   // Load stored values on app start
+
+  // useEffect -> Component / Page lifecycle
+
  useEffect(() => {
+    // The initialiazation can be done on useEffect
+
+    // IIFE -> Immediate invoked function execution
    (async () => {
+    // load the Theme from the storage
      const storedTheme = await loadTheme();
+
+     // load dark or light in the component state
      if (storedTheme) setTheme(storedTheme);
 
      const storedToken = await loadToken();
      if (storedToken) setToken(storedToken);
    })();
- }, []);
+
+
+   // useEffect with [] -> Once per componenent load
+   // [counter] = > Will be invoked everytime the value of state/counter change
+   // useEffect(()=> { }) -> Everytime it will run
+ 
+}, []);
   const isDark = theme === 'dark';
 
 
   return (
+    // add the styles container +.   if darik is true ? styles.dark : styles.light 
     <View  style={[styles.container, isDark ? styles.dark : styles.light]}>
       <Text style={[styles.title, isDark ? styles.textDark : styles.textLight]}>
        Storage Lab
@@ -49,6 +68,7 @@ const [theme, setTheme] = useState('light');
        <Button
          title="Clear Saved Theme"
          onPress={async () => {
+            // call the clearTheme method from the StorageComponent
            await clearTheme();
            setTheme('light');
          }}

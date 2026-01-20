@@ -12,13 +12,14 @@ import {
   
 } from 'react-native-safe-area-context';
 import StorageComponent from './src/components/StorageComponent'
+import ProductList from './src/components/ProductList';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <SafeAreaProvider>
-      <StorageComponent/>
+      <ProductList/>
     </SafeAreaProvider>
   );
 }
