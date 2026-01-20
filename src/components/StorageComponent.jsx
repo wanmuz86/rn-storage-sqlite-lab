@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+
 import React, {useEffect, useState} from 'react';
 import { Text, View, Button, StyleSheet} from 'react-native';
-import {saveTheme, loadTheme, clearTheme} from './src/storage/preferences';
-import {saveToken, loadToken, deleteToken} from './src/storage/secureAuth';
+import {saveTheme, loadTheme, clearTheme} from '../storage/preferences';
+import {saveToken, loadToken, deleteToken} from '../storage/secureAuth';
 
 
 export default function StorageComponent() {
@@ -21,10 +20,11 @@ const [theme, setTheme] = useState('light');
      if (storedToken) setToken(storedToken);
    })();
  }, []);
+  const isDark = theme === 'dark';
 
 
   return (
-    <View>
+    <View  style={[styles.container, isDark ? styles.dark : styles.light]}>
       <Text style={[styles.title, isDark ? styles.textDark : styles.textLight]}>
        Storage Lab
      </Text>

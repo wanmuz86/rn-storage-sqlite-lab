@@ -9,8 +9,7 @@
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import {
   SafeAreaProvider,
-  SafeAreaView,
-  useSafeAreaInsets,
+  
 } from 'react-native-safe-area-context';
 import StorageComponent from './src/components/StorageComponent'
 
